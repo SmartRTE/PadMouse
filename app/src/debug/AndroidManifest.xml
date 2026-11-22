@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <!--
+          debug 版把 ProbeReceiver 导出，adb 才能用 am broadcast 触发
+          （命令行参数见 ProbeReceiver 的注释）。
+          release 版在主 Manifest 里是 exported="false"，第三方 App 无法调用。
+        -->
+        <receiver
+            android:name="com.padmouse.mapper.ProbeReceiver"
+            android:exported="true"
+            tools:node="replace">
+            <intent-filter>
+                <action android:name="com.padmouse.probe.CMD" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

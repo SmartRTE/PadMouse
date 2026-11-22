@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PadMouse" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- 启动瞬间的窗口底色，按系统深浅色切换，避免白/黑闪屏 -->
+        <item name="android:windowBackground">@color/window_bg</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

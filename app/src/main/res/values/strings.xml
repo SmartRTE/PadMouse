@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">手柄鼠标 PadMouse</string>
+    <string name="a11y_label">PadMouse 手柄映射</string>
+    <string name="a11y_description">开启后，本服务把手柄的按键与摇杆转换为屏幕上的鼠标光标与触摸操作。仅用于你本人的手动操作，不读取任何屏幕内容。</string>
+</resources>

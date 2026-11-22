@@ -1,0 +1,45 @@
+# ---- Gradle ----
+.gradle/
+build/
+*/build/
+
+# ---- Kotlin ----
+.kotlin/
+
+# ---- Android ----
+*.apk
+*.aab
+*.ap_
+*.dex
+local.properties
+
+# ---- IDE ----
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# ---- 系统 ----
+.DS_Store
+Thumbs.db
+
+# ---- 仅本地使用（含个人环境信息，不公开）----
+docs/DEV-SETUP.local.md
+# docs 里只公开图标素材；其余是本地讨论 / 验证记录，不入库
+docs/*
+!docs/icon-preview.png
+!docs/icon-in-launcher.png
+!docs/make_icon.py
+
+# ---- 本地临时 ----
+*.log
+*.tmp
+docs/_scratch.txt
+
+# ---- 签名密钥（绝对不能提交） ----
+keystore/
+keystore.properties
+*.jks
+*.keystore
+docs/_ui_home.png

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 常驻通知（暂停/恢复入口） -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Android 11+ 包可见性：用于读取已安装的桌面应用列表（黑名单勾选） -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".PadMouseApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PadMouse">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|density"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".capture.PadAccessibilityService"
+            android:exported="true"
+            android:label="@string/a11y_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+
+        <!--
+          调试用控制通道（adb am broadcast 触发），详见 ProbeReceiver 注释。
+
+          主 Manifest 里 exported="false"：通知栏按钮走的是同进程 PendingIntent，
+          不需要导出；release 版第三方 App 也无法借此操控我们的映射或改写配置。
+          debug 版由 app/src/debug/AndroidManifest.xml 用 tools:node="replace"
+          覆盖成 exported="true"，adb 才能调。
+        -->
+        <receiver
+            android:name=".ProbeReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.padmouse.probe.CMD" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
